@@ -1,21 +1,20 @@
 package com.example.demo.repositories;
 
-import java.util.List;
-
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Role;
 
 
+/**
+ * Interface phan repository cua vai tro
+ * @author PHUONG
+ * @version 1.0
+ */
 @Repository
 @Primary
-public interface RoleRepository extends JpaRepository<Role, Long>, PagingAndSortingRepository<Role, Long>, RoleRepositoryCustom{
+public interface RoleRepository extends JpaRepository<Role, Long>, RoleRepositoryCustom{
 	
 //	@Query(value = "select * from Role where id = :id", nativeQuery = true)
 //	List<Role> fillRole(@RequestParam("id") long id);

@@ -13,6 +13,11 @@ import org.slf4j.LoggerFactory;
 import com.example.demo.model.Pagination;
 import com.example.demo.model.Role;
 
+/**
+ * Ke thua interface repository custom xu ly cac chu nang lay danh sach vai tro
+ * @author PHUONG
+ * @version 1.0
+ */
 public class RoleRepositoryImpl implements RoleRepositoryCustom {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RoleRepositoryImpl.class);
@@ -21,35 +26,6 @@ public class RoleRepositoryImpl implements RoleRepositoryCustom {
 	private EntityManager em;
 
 //	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-
-//	@Override
-//	public List<Role> fillByRole() {
-//		List<Role> result = new ArrayList<>();
-//		try {
-////			Session session = sessionFactory.openSession();
-////			Query query = session.createQuery("select * FROM Role");
-////			query.setFirstResult(0);
-////			query.setMaxResults(10);
-////			result = query.list();
-////			return result;
-//			
-//			int pageNumber = 1;
-//			int pageSize = 10;
-//			
-//			
-//			String sql = "select * from Role";
-//			Query query = em.createNativeQuery(sql,Role.class);
-//			query.setFirstResult(pageNumber - 1);// phan trang, lay tu phan tu thu 0 trong list, max lay 10 phan tu
-//			query.setMaxResults(pageSize);
-//			
-//			pageNumber += pageSize;
-//			result = query.getResultList();
-//		} catch (Exception ex) {
-//			LOG.error("fillByRole: " + ex.getMessage());
-//		}
-//		
-//		return result;
-//	}
 
 	@Override
 	public Pagination<Role> fillAllRole(int pageNumber, int pageSize) {

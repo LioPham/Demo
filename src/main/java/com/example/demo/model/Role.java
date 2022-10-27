@@ -13,6 +13,12 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
+/**
+ * Entities cua vai tro
+ * @author PHUONG
+ * @version 
+ * @since 
+ */
 @Entity
 @Table(name = "ROLE")
 @Data

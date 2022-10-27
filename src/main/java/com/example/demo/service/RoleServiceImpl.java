@@ -18,6 +18,11 @@ import com.example.demo.model.Role;
 import com.example.demo.repositories.RoleRepository;
 import com.example.demo.repositories.RoleRepositoryCustom;
 
+/**
+ * Ke thua interface phan service xu ly cac chuc nang cua vai tro
+ * @author PHUONG
+ * @version 1.0
+ */
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {

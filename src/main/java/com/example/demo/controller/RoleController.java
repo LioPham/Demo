@@ -23,6 +23,12 @@ import com.example.demo.model.Role;
 import com.example.demo.service.RoleService;
 import com.example.demo.util.ResponseJson;
 
+/**
+ * Controller cua vai tro
+ * @author PHUONG
+ * @version 1.0
+ */
+
 @RestController
 @RequestMapping("/role")
 public class RoleController extends BaseController {
@@ -32,11 +38,11 @@ public class RoleController extends BaseController {
 	@Autowired
 	RoleService roleService;
 
-	@GetMapping("/test")
-	public String test() {
-		return "hhhhhh";
-	}
-
+	/**
+	 * Controller tao moi vai tro
+	 * @param role
+	 * @return dataRole voi method addRole xu ly trong service
+	 */
 	@PostMapping("/add")
 	public ResponseEntity<ResponseJson> addRole(@RequestBody @Valid Role role) {
 		try {
@@ -54,6 +60,12 @@ public class RoleController extends BaseController {
 		return null;
 	}
 
+	/**
+	 * Controller cap nhap cho vai tro
+	 * @param id
+	 * @param role
+	 * @return dataRole voi method updateRole xu ly trong service
+	 */
 	@PutMapping("/update")
 	public ResponseEntity<ResponseJson> updateRole(@RequestParam("id") long id, @RequestBody @Valid Role role) {
 		try {
@@ -71,6 +83,11 @@ public class RoleController extends BaseController {
 		return null;
 	}
 
+	/**
+	 * Controller thay doi trang thai is_delete cua vai tro
+	 * @param id
+	 * @return dataRole voi method deleteRole xu ly trong service
+	 */
 	@PutMapping("/is_delete")
 	public ResponseEntity<ResponseJson> deleteRole(@RequestParam("id") long id) {
 		try {
@@ -85,6 +102,12 @@ public class RoleController extends BaseController {
 		return null;
 	}
 
+	/**
+	 * Controller lay ra danh sach tat ca trong vai tro
+	 * @param pageSize
+	 * @param pageNumber
+	 * @return dataRole voi method getAllRole xu ly trong service
+	 */
 	@GetMapping(value = "/getAll")
 	public ResponseEntity<ResponseJson> getAllRole(
 			@RequestParam(value="pageSize" , defaultValue = "5") int pageSize,
@@ -101,6 +124,16 @@ public class RoleController extends BaseController {
 		return null;
 	}
 	
+	/**
+	 * Controller lay ra vai tro voi viec thoa mai cac tham so truyen vao
+	 * @param id
+	 * @param role_name
+	 * @param role_code
+	 * @param status
+	 * @param pageSize
+	 * @param pageNumber
+	 * @return dataRole voi method getRole xu ly trong service
+	 */
 	@GetMapping(value = "/get")
 	public ResponseEntity<ResponseJson> getRole(@RequestParam("id") long id, @RequestParam(value = "role_name", required = false) String role_name,
 			@RequestParam(value = "role_code", required = false) String role_code, @RequestParam(value = "status", required = false) Long status,
