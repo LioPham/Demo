@@ -1,29 +1,27 @@
 package com.example.demo.repositories;
 
-import org.hibernate.SessionFactory;
-//import org.hibernate.query.Query;
-import org.hibernate.cfg.Configuration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.example.demo.model.Pagination;
 import com.example.demo.model.Role;
 
-
 public class RoleRepositoryImpl implements RoleRepositoryCustom {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(RoleRepositoryImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;
 
 //	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-	
+
 //	@Override
 //	public List<Role> fillByRole() {
 //		List<Role> result = new ArrayList<>();
@@ -58,13 +56,12 @@ public class RoleRepositoryImpl implements RoleRepositoryCustom {
 		int lastPageNumber = 0;
 		Long totalRecords = new Long(100);
 		List<Role> roleList = new ArrayList<>();
-		
+
 		try {
 			String countSql = "select count(id) from Role";
 			Query countQuery = em.createQuery(countSql);
 			totalRecords = (Long) countQuery.getSingleResult();
-			
-			
+
 			if (totalRecords % pageSize == 0) {
 				lastPageNumber = (int) (totalRecords / pageSize);
 			} else {
@@ -73,13 +70,13 @@ public class RoleRepositoryImpl implements RoleRepositoryCustom {
 		} catch (Exception ex) {
 			LOG.error("totalRecords, lastPageNumber: " + ex.getMessage());
 		}
-		
+
 		try {
 			String sql = "select * from Role";
-			Query query = em.createNativeQuery(sql,Role.class);
+			Query query = em.createNativeQuery(sql, Role.class);
 			query.setFirstResult((pageNumber - 1) * pageSize);
-		    query.setMaxResults(pageSize);
-		    roleList = query.getResultList();		    
+			query.setMaxResults(pageSize);
+			roleList = query.getResultList();
 		} catch (Exception ex) {
 			LOG.error("fillByRole: " + ex.getMessage());
 		}
@@ -90,9 +87,31 @@ public class RoleRepositoryImpl implements RoleRepositoryCustom {
 		result.setTotalRecords(totalRecords);
 		result.setRecords(roleList);
 		return result;
-		
+
 	}
 
+	@Override
+	public List<Role> fillRole(long id, String role_name, String role_code, Long status, int pageNumber, int pageSize) {
 
+		List<Role> result = new ArrayList<>();
+		String sql = "select r from Role r where r.id = :id "
+				+ "and (:role_name is null or r.role_name like :role_name) "
+				+ "and (:role_code is null or r.role_code like :role_code) "
+				+ "and (:status is null or r.status = :status) ";
+		Query query = em.createQuery(sql, Role.class);
+
+		query.setParameter("id", id);
+		query.setParameter("role_name", role_name);
+		query.setParameter("role_code", role_code);
+
+		query.setParameter("status", status);
+
+		query.setFirstResult((pageNumber - 1) * pageSize);
+		query.setMaxResults(pageSize);
+		result = query.getResultList();
+
+		return result;
+
+	}
 
 }

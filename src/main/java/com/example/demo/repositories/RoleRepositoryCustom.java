@@ -7,7 +7,6 @@ import com.example.demo.model.Role;
 
 
 public interface RoleRepositoryCustom {
-//	List<Role> fillByRole();
 	Pagination<Role> fillAllRole(int pageNumber, int pageSize);
-//	List<Role> fillDetailRole(long id, String role_name, String role_code, long status);
+	List<Role> fillRole(long id, String role_name, String role_code, Long status, int pageNumber, int pageSize);
 }

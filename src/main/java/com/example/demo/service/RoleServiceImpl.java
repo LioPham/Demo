@@ -77,40 +77,42 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public List<Role> getDetailRole(long id, String role_name, String role_code, long status) {
-		List<Role> dataRole = new ArrayList<>();
-		if (id >= 0) {
-			dataRole.addAll(roleRepository.fillDetailRoleById(id));
-		}
-		if (role_name != null) {
-			for (Role role: dataRole) {
-				if (!role.getRole_name().equals(role_name)) {
-					dataRole.addAll(roleRepository.fillDetailRoleByRoleName(role_name));
-				}
-			}			
-		}
-		if (role_code != null) {
-			for (Role role: dataRole) {
-				if (!role.getRole_code().equals(role_code)) {
-					dataRole.addAll(roleRepository.fillDetailRoleByRoleCode(role_code));
-				}
-			}	
-		}
-		if (status >= 0) {
-			for (Role role: dataRole) {
-				if (!(role.getStatus() == status)) {
-					dataRole.addAll(roleRepository.fillDetailRoleByStatus(status));
-				} 						
-			}
-		}
-		return dataRole;
-
-	}
-
-	@Override
 	public Pagination<Role> getAllRole(int pageNumber, int pageSize) {
 		return roleRepository.fillAllRole(pageNumber, pageSize);
 	}
 
+	@Override
+	public List<Role> getRole(long id, String role_name, String role_code, Long status, int pageNumber, int pageSize) {
+		return roleRepository.fillRole(id, role_name, role_code, status, pageNumber, pageSize);
+	}
 
+//	@Override
+//	public List<Role> getRole(long id, String role_name, String role_code, long status) {
+//		List<Role> dataRole = new ArrayList<>();
+//		if (id >= 0) {
+//			dataRole.addAll(roleRepository.fillDetailRoleById(id));
+//		}
+//		if (role_name != null) {
+//			for (Role role: dataRole) {
+//				if (!role.getRole_name().equals(role_name)) {
+//					dataRole.addAll(roleRepository.fillDetailRoleByRoleName(role_name));
+//				}
+//			}			
+//		}
+//		if (role_code != null) {
+//			for (Role role: dataRole) {
+//				if (!role.getRole_code().equals(role_code)) {
+//					dataRole.addAll(roleRepository.fillDetailRoleByRoleCode(role_code));
+//				}
+//			}	
+//		}
+//		if (status >= 0) {
+//			for (Role role: dataRole) {
+//				if (!(role.getStatus() == status)) {
+//					dataRole.addAll(roleRepository.fillDetailRoleByStatus(status));
+//				} 						
+//			}
+//		}
+//		return dataRole;
+//	}
 }

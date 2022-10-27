@@ -85,7 +85,7 @@ public class RoleController extends BaseController {
 		return null;
 	}
 
-	@GetMapping(value = "/get")
+	@GetMapping(value = "/getAll")
 	public ResponseEntity<ResponseJson> getAllRole(
 			@RequestParam(value="pageSize" , defaultValue = "5") int pageSize,
 			@RequestParam(value="pageNumber" , defaultValue = "0") int pageNumber) {
@@ -99,14 +99,15 @@ public class RoleController extends BaseController {
 			return createErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
-//		return roleService.getAllRole();
 	}
 	
-	@GetMapping(value = "/getdetail")
-	public ResponseEntity<ResponseJson> getDetailRole(@RequestParam("id") long id, @RequestParam(value = "role_name", required = false) String role_name,
-			@RequestParam(value = "role_code", required = false) String role_code, @RequestParam(value = "status") long status) {
+	@GetMapping(value = "/get")
+	public ResponseEntity<ResponseJson> getRole(@RequestParam("id") long id, @RequestParam(value = "role_name", required = false) String role_name,
+			@RequestParam(value = "role_code", required = false) String role_code, @RequestParam(value = "status", required = false) Long status,
+			@RequestParam(value="pageSize" , defaultValue = "5") int pageSize,
+			@RequestParam(value="pageNumber" , defaultValue = "0") int pageNumber) {
 		try {
-			List<Role> dataRole = roleService.getDetailRole(id, role_name, role_code, status);
+			List<Role> dataRole = roleService.getRole(id, role_name, role_code, status, pageNumber, pageSize);
 			if (dataRole != null) {
 				return createSuccessResponse(dataRole, HttpStatus.OK);
 			}
@@ -116,44 +117,4 @@ public class RoleController extends BaseController {
 		}
 		return null;
 	}
-	
-//	@GetMapping(value = "/get")
-//	public ResponseEntity<ResponseJson> getRole(@RequestBody Role role_name) {
-//		try {
-//			if (role_name == null) {
-//				return createErrorResponse("Not found", HttpStatus.NOT_FOUND);
-//			}
-////			List<Role> result = roleService.getRole(role.getRole_name());
-//			List<Role> result = roleService.getAllRole(role_name.getRole_name());
-//
-//			if (null != result) {
-//				return createSuccessResponse(result, HttpStatus.OK);
-//			} else {
-//				return createErrorResponse("Not found", HttpStatus.NOT_FOUND);
-//			}
-//		} catch (Exception ex) {
-//			LOG.error("search" + ex.getMessage(), ex);
-//			return createErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
 }
-
-//	@PostMapping("/add")
-//	public Role addRole(@RequestParam("id") long id, @RequestBody Role role) {
-//		return roleService.addRole(role);
-//	}
-//	
-//	@PutMapping("/update")
-//	public Role updateRole(@RequestParam("id") long id, @RequestBody Role role) {
-//		return roleService.updateRole(id, role);
-//	}
-//	
-//	@DeleteMapping("/delete/{id}")
-//	public boolean deleteRole(@RequestParam("id") long id) {
-//		return roleService.deleteRole(id);
-//	}
-//	
-//	@GetMapping("/list")
-//	public List<Role> getAllRole(){
-//		return roleService.getRole();
-//	}

@@ -18,17 +18,17 @@ import com.example.demo.model.Role;
 public interface RoleRepository extends JpaRepository<Role, Long>, PagingAndSortingRepository<Role, Long>, RoleRepositoryCustom{
 	
 //	@Query(value = "select * from Role where id = :id", nativeQuery = true)
-//	List<Role> fillDetailRole(@RequestParam("id") long id);
+//	List<Role> fillRole(@RequestParam("id") long id);
 	
-	@Query(value = "select * from Role where id = :id", nativeQuery = true)
-	List<Role> fillDetailRoleById(@RequestParam("id") long id);
-	
-	@Query(value = "select * from Role where role_name = :role_name", nativeQuery = true)
-	List<Role> fillDetailRoleByRoleName(@RequestParam("role_name") String role_name);
-	
-	@Query(value = "select * from Role where role_code = :role_code", nativeQuery = true)
-	List<Role> fillDetailRoleByRoleCode(@RequestParam("role_code") String role_code);
-	
-	@Query(value = "select * from Role where status = :status", nativeQuery = true)
-	List<Role> fillDetailRoleByStatus(@RequestParam("status") long status);
+//	@Query(value = "select * from Role where id = :id", nativeQuery = true)
+//	List<Role> fillRoleById(@RequestParam("id") long id);
+//	
+//	@Query(value = "select * from Role where role_name = :role_name", nativeQuery = true)
+//	List<Role> fillRoleByRoleName(@RequestParam("role_name") String role_name);
+//	
+//	@Query(value = "select * from Role where role_code = :role_code", nativeQuery = true)
+//	List<Role> fillRoleByRoleCode(@RequestParam("role_code") String role_code);
+//	
+//	@Query(value = "select * from Role where status = :status", nativeQuery = true)
+//	List<Role> fillRoleByStatus(@RequestParam("status") long status);
 }

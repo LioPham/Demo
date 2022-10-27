@@ -18,10 +18,9 @@ public interface RoleService {
 	// Delete role
 	public Role deleteRole(long id);
 
-	// Get role
+	// Get all role
 	public Pagination<Role> getAllRole(int pageNumber, int pageSize);
 	
-//	public List<Role> getDetailRole(long id, Optional<String> role_name, Optional<String> role_code, Optional<Long> status);
-
-	public List<Role> getDetailRole(long id, String role_name, String role_code, long status);
+	// Get role
+	public List<Role> getRole(long id, String role_name, String role_code, Long status, int pageNumber, int pageSize);
 }

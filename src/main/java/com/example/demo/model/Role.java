@@ -37,7 +37,7 @@ public class Role {
     
     @Basic
     @Column(name = "STATUS")
-    private long status;
+    private Long status;
     
     @Basic
     @Column(name = "IS_DELETE")
@@ -50,7 +50,7 @@ public class Role {
     public Role() {
 	}
     
-    public Role(String role_name, String role_code, long status, long is_delete, String creator_date) {
+    public Role(String role_name, String role_code, Long status, long is_delete, String creator_date) {
 		this.role_name = role_name;
 		this.role_code = role_code;
 		this.status = status;
@@ -82,11 +82,11 @@ public class Role {
 		this.role_code = role_code;
 	}	
 
-	public long getStatus() {
+	public Long getStatus() {
 		return status;
 	}
 
-	public void setStatus(long status) {
+	public void setStatus(Long status) {
 		this.status = status;
 	}
 	
@@ -105,18 +105,6 @@ public class Role {
 	public void setCreator_date(String creator_date) {
 		this.creator_date = creator_date;
 	}
-
-//	@Transient
-//    private Long type;
-//
-//	
-//	public Long getType() {
-//		return type;
-//	}
-//
-//	public void setType(Long type) {
-//		this.type = type;
-//	}
 
 	@Override
 	public String toString() {
