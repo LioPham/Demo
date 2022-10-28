@@ -73,15 +73,13 @@ public class RoleRepositoryImpl implements RoleRepositoryCustom {
 
 		List<Role> result = new ArrayList<>();
 		String sql = "select r from Role r where r.id = :id "
-				+ "and (:role_name is null or lower(r.role_name) like '%:role_name%') "
-				+ "and (:role_code is null or lower(r.role_code) like '%:role_code%') "
+				+ "and (:role_name is null or lower(r.role_name) like concat('%', :role_name, '%')) "
+				+ "and (:role_code is null or lower(r.role_code) like concat('%', :role_code, '%')) "
 				+ "and (:status is null or r.status = :status) ";
 		Query query = em.createQuery(sql, Role.class);
-		String lowerRoleName = lowerCase(role_name);
-		String lowerRoleCode = lowerCase(role_code);;
 		query.setParameter("id", id);
-		query.setParameter("role_name", lowerRoleName);
-		query.setParameter("role_code", lowerRoleCode);
+		query.setParameter("role_name", lowerCase(role_name));
+		query.setParameter("role_code", lowerCase(role_code));
 
 		query.setParameter("status", status);
 
