@@ -88,7 +88,7 @@ public class RoleController extends BaseController {
 	 * @param id
 	 * @return dataRole voi method deleteRole xu ly trong service
 	 */
-	@PutMapping("/is_delete")
+	@PutMapping("/delete")
 	public ResponseEntity<ResponseJson> deleteRole(@RequestParam("id") long id) {
 		try {
 			Role dataRole = roleService.deleteRole(id);

@@ -1,10 +1,6 @@
 package com.example.demo.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -70,10 +66,11 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role deleteRole(long id) {
 		try {
-			Role role = roleRepository.findById(id).get();
-			if (id >= 1) {
-				role.setIs_delete(1);
-				return roleRepository.save(role);
+			Role dataRole = roleRepository.findById(id).get();
+			if (dataRole != null) {
+				dataRole.setIs_delete(1);
+				dataRole.setCreator_date(dataRole.getCreator_date());
+				return roleRepository.save(dataRole);
 			}
 		} catch (Exception ex) {
 			LOG.error("deleteRole: " + ex.getMessage());
